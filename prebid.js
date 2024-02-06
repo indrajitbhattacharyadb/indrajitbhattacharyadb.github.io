@@ -9,7 +9,6 @@ if (window.pbjs && window.pbjs.libLoaded)
       );
   } catch (e) {}
 else
-console.log('starting prebid')
   (function () {
     !(function () {
       var e,
