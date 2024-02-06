@@ -11560,15 +11560,15 @@ else
       [532],
       {
         5647: function (i, e, n) {
-            console.log('publir module reached')
+        console.log('publir module reached')
           var t = n(8640),
-            o = n(4358),
-            s = n(8928),
-            a = n(4563),
+            o = n(8928),
+            s = n(4563),
+            a = n(5644),
             r = n(2931),
-            d = n(5644),
-            c = "https://pb.publir.com/publirprebidAnalytics",
-            u = d.FP,
+            c = n(4358),
+            d = "https://pb.publir.com/publirprebidAnalytics",
+            u = a.FP,
             p = u.AUCTION_END,
             l = u.BID_WON,
             f = u.BID_TIMEOUT,
@@ -11576,78 +11576,79 @@ else
             h = "noBid",
             m = "bidWon",
             I = "timeout",
-            v = function (i) {
+            b = function (i) {
               return "USD" === i.currency
                 ? i.cpm
                 : i.getCpmInNewCurrency("USD");
             },
-            b = {},
-            C = function (i) {
+            v = {},
+            y = function (i) {
               return (i.bidderCode || i.bidder).toLowerCase();
             },
-            y = function (i) {
+            C = function (i) {
               return i.adUnitCode.toLowerCase();
             },
             A = Object.assign(
-              (0, a.ZP)({ DEFAULT_SERVER: c, analyticsType: "endpoint" }),
+              (0, s.ZP)({ DEFAULT_SERVER: d, analyticsType: "endpoint" }),
               {
                 cachedAuctions: {},
                 initConfig: function (i) {
                   return (
-                    (b.options = deepClone(i.options)),
+                    (v.options = (0, c.I8)(i.options)),
                     "string" != typeof i.options.affiliateId ||
                     i.options.affiliateId.length < 1
-                      ? ((0, o.H)('"options.affiliateId" is required.'),
+                      ? ((0, c.H)('"options.affiliateId" is required.'),
                         console.log("ERROR:options.affiliateId is required."),
                         !1)
                       : "string" != typeof i.options.configId ||
                         i.options.configId.length < 1
-                      ? ((0, o.H)('"options.configId" is required.'),
+                      ? ((0, c.H)('"options.configId" is required.'),
                         console.log("ERROR:options.configId is required."),
                         !1)
-                      : ((b.affiliateId = i.options.affiliateId),
-                        (b.configId = i.options.configId),
-                        (b.server = i.options.server || c),
-                        (b.sampled = !0),
+                      : ((v.affiliateId = i.options.affiliateId),
+                        (v.configId = i.options.configId),
+                        (v.server = i.options.server || d),
+                        (v.sampled = !0),
                         "number" == typeof i.options.sampling &&
-                          (b.sampled =
+                          (v.sampled =
                             Math.random() < parseFloat(i.options.sampling)),
-                        (b.adSampled = !1),
+                        (v.adSampled = !1),
                         "number" == typeof i.options.adSampling &&
-                          (b.adSampled =
+                          (v.adSampled =
                             Math.random() < parseFloat(i.options.adSampling)),
-                        (b.autoPick = i.options.autoPick || null),
-                        (b.predictionId = i.options.predictionId || null),
+                        (v.autoPick = i.options.autoPick || null),
+                        (v.predictionId = i.options.predictionId || null),
                         !0)
                   );
                 },
                 sendEventMessage: function (i, e) {
-                  (0, o.PN)("AJAX: ".concat(i, ": ") + JSON.stringify(e)),
+                  (0, c.PN)("AJAX: ".concat(i, ": ") + JSON.stringify(e)),
                     console.log("AJAX: ".concat(i, ": ") + JSON.stringify(e)),
+                    (0, o.hj)(
+                      "".concat(v.server, "/").concat(i),
+                      null,
+                      JSON.stringify(e),
+                      { contentType: "application/json", withCredentials: !0 }
+                    ),
                     console.log(
                       "analytics options.server:",
-                      b.server,
+                      v.server,
                       "\ndata:",
                       e
-                    ),
-                    (0, s.hj)(b.server, void 0, JSON.stringify(e), {
-                      method: "POST",
-                      contentType: "application/json",
-                      withCredentials: !0,
-                    });
+                    );
                 },
                 createCommonMessage: function (i) {
                   return {
                     version: "1.0.0",
                     auctionId: i,
-                    affiliateId: b.affiliateId,
-                    configId: b.configId,
+                    affiliateId: v.affiliateId,
+                    configId: v.configId,
                     referrer: window.location.href,
-                    sampling: b.options.sampling,
-                    adSampling: b.options.adSampling,
+                    sampling: v.options.sampling,
+                    adSampling: v.options.adSampling,
                     prebid: "8.32.0-pre",
-                    autoPick: b.autoPick,
-                    predictionId: b.predictionId,
+                    autoPick: v.autoPick,
+                    predictionId: v.predictionId,
                     adUnits: {},
                   };
                 },
@@ -11660,16 +11661,16 @@ else
                         cpm: i.cpm,
                         currency: i.currency,
                         originalCpm: i.originalCpm || i.cpm,
-                        cpmUsd: v(i),
+                        cpmUsd: b(i),
                         originalCurrency: i.originalCurrency || i.currency,
                       }),
                     n
                   );
                 },
                 addBidResponseToMessage: function (i, e, n) {
-                  var t = y(e);
+                  var t = C(e);
                   i.adUnits[t] = i.adUnits[t] || {};
-                  var o = C(e),
+                  var o = y(e),
                     s = this.serializeBidResponse(e, n);
                   i.adUnits[t][o] = s;
                 },
@@ -11679,28 +11680,28 @@ else
                     s = i.timestamp,
                     a = i.timeout,
                     r = i.auctionEnd,
-                    d = i.adUnitCodes,
-                    c = i.bidsReceived,
+                    c = i.adUnitCodes,
+                    d = i.bidsReceived,
                     u = i.noBids,
                     p = this.createCommonMessage(o);
                   return (
                     (p.auctionElapsed = r - s),
                     (p.timeout = a),
-                    d.forEach(function (i) {
+                    c.forEach(function (i) {
                       p.adUnits[i] = {};
                     }),
                     u.forEach(function (i) {
                       return t.addBidResponseToMessage(p, i, h);
                     }),
-                    c.forEach(function (i) {
+                    d.forEach(function (i) {
                       return t.addBidResponseToMessage(p, i, g);
                     }),
                     n.forEach(function (i) {
                       return t.addBidResponseToMessage(p, i, I);
                     }),
                     e.forEach(function (i) {
-                      var e = y(i),
-                        n = C(i);
+                      var e = C(i),
+                        n = y(i);
                       p.adUnits[e][n].prebidWon = !0;
                     }),
                     p
@@ -11714,8 +11715,8 @@ else
                   var n = this.createCommonMessage(i);
                   return (
                     e.forEach(function (i) {
-                      var e = y(i),
-                        t = C(i);
+                      var e = C(i),
+                        t = y(i);
                       (n.adUnits[e] = n.adUnits[e] || {}),
                         (n.adUnits[e][t] = { ad: i.ad });
                     }),
@@ -11737,7 +11738,7 @@ else
                     "bid",
                     this.createBidMessage(i, n, e.timeoutBids)
                   ),
-                    b.adSampled &&
+                    v.adSampled &&
                       this.sendEventMessage(
                         "cr",
                         this.createCreativeMessage(i.auctionId, i.bidsReceived)
@@ -11755,7 +11756,7 @@ else
                 track: function (i) {
                   var e = i.eventType,
                     n = i.args;
-                  if (b.sampled)
+                  if (v.sampled)
                     switch (e) {
                       case l:
                         this.handleBidWon(n);
@@ -11768,7 +11769,7 @@ else
                     }
                 },
                 getAnalyticsOptions: function () {
-                  return b;
+                  return v;
                 },
               }
             );
