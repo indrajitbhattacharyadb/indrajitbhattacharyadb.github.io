@@ -11628,7 +11628,6 @@ else
                     console.log('track called')
                   var n = e.eventType,
                     t = e.args;
-                  if (b.sampled)
                     switch (n) {
                       case l:
                         this.handleBidWon(t);
