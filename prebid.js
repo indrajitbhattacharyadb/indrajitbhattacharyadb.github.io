@@ -11648,6 +11648,7 @@ else
                 },
               }
             );
+            console.log('variable init finish')
           (w.originEnableAnalytics = w.enableAnalytics),
             (w.enableAnalytics = function (e) {
               this.initConfig(e) && w.originEnableAnalytics(e);
