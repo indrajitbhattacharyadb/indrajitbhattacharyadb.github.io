@@ -11625,6 +11625,7 @@ else
                   this.sendEventMessage("imp", this.createImpressionMessage(e));
                 },
                 track: function (e) {
+                    console.log('track called')
                   var n = e.eventType,
                     t = e.args;
                   if (b.sampled)
