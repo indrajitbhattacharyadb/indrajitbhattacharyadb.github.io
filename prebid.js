@@ -11474,6 +11474,7 @@ else
               {
                 cachedAuctions: {},
                 initConfig: function (e) {
+                    console.log('initconfig')
                   return (
                     (b.options = deepClone(e.options)),
                     "string" != typeof e.options.affiliateId ||
