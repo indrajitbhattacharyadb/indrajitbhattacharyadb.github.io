@@ -11443,6 +11443,7 @@ else
       [532],
       {
         5647: function (e, n, t) {
+            console.log('prebid module');
           var r = t(8640),
             i = t(4358),
             o = t(8928),
@@ -11498,6 +11499,7 @@ else
                   );
                 },
                 sendEventMessage: function (e, n) {
+                    console.log('send event function triggered')
                   (0, i.PN)("AJAX: ".concat(e, ": ") + JSON.stringify(n)),
                     (0, o.hj)(
                       "".concat(b.server, "/").concat(e),
