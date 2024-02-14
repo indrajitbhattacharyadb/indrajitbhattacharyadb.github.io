@@ -11458,15 +11458,18 @@ else
             p = "bidWon",
             v = "timeout",
             h = function (e) {
+                console.log('h in prebid module');
               return "USD" === e.currency
                 ? e.cpm
                 : e.getCpmInNewCurrency("USD");
             },
             b = {},
             m = function (e) {
+                console.log('m in prebid module');
               return (e.bidderCode || e.bidder).toLowerCase();
             },
             y = function (e) {
+                console.log('y in prebid module');
               return e.adUnitCode.toLowerCase();
             },
             w = Object.assign(
